@@ -72,6 +72,7 @@ class DetailScreen extends StatefulWidget{
   _DetailScreenState createState() => _DetailScreenState();
 }
 class _DetailScreenState extends State<DetailScreen>{
+  //final List<String>
 // class DetailScreen extends StatelessWidget {
    //DetailScreen({Key? key}) : super(key: key);
   List<Flashcard> _flashcard =[
@@ -108,35 +109,36 @@ class _DetailScreenState extends State<DetailScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.cyanAccent,
+        appBar: AppBar(title: Text('TỪ MỚI'),centerTitle: true,backgroundColor: Colors.pink,),
         body: Center(
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OutlineButton.icon(
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TestScreen()),
-                        );
-                      },
-                      icon: Icon(Icons.home),
-                      label: Text('APP HOME')),
-                  OutlineButton.icon(
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Login()),
-                        );
-                      },
-                      icon: Icon(Icons.offline_bolt_outlined),
-                      label: Text('ĐĂNG XUẤT')),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     OutlineButton.icon(
+              //         onPressed: (){
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(builder: (context) => TestScreen()),
+              //           );
+              //         },
+              //         icon: Icon(Icons.home),
+              //         label: Text('APP HOME')),
+              //     // OutlineButton.icon(
+              //     //     onPressed: (){
+              //     //       Navigator.push(
+              //     //         context,
+              //     //         MaterialPageRoute(builder: (context) => Login()),
+              //     //       );
+              //     //     },
+              //     //     icon: Icon(Icons.offline_bolt_outlined),
+              //     //     label: Text('ĐĂNG XUẤT')),
+              //   ],
+              // ),
               SizedBox(
                 width: 350,
                 height: 450,
