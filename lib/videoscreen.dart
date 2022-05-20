@@ -4,12 +4,13 @@
 /// video.
 
 import 'package:flutter/material.dart';
+import 'package:untitled1/model.dart';
 import 'package:video_player/video_player.dart';
 
 
 class VideoScreen extends StatefulWidget {
-  final String url;
-  VideoScreen({Key? key,required this.url}) :super(key: key);
+  final Conversation conversation;//đối tượng từ doạn văn
+  const VideoScreen(this.conversation);
 
   @override
   _VideoScreenState createState() => _VideoScreenState();
@@ -22,7 +23,7 @@ class _VideoScreenState extends State<VideoScreen> {
   void initState(){
     // _controller = VideoPlayerController.network(
     //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
-    _controller = VideoPlayerController.asset(widget.url);
+    _controller = VideoPlayerController.network(widget.conversation.video.upload);
     _initiallizeVideoPlayerFuture = _controller.initialize();
     _controller.setLooping(true);
     _controller.setVolume(1.0);

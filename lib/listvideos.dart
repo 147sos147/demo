@@ -1,122 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/audio.dart';
+import 'package:untitled1/model.dart';
 import 'package:untitled1/videoscreen.dart';
 
-class ListVideos extends StatelessWidget {
-  //final PlayAudio playAudio;
-  const ListVideos({Key? key}) : super(key: key);
 
+class ListVideos extends StatefulWidget {
+  final List<Conversation> conversation;
+  const ListVideos( this.conversation);
+  @override
+  _ListVideosState createState() => _ListVideosState();
+}
+class _ListVideosState extends State<ListVideos> {
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
-      backgroundColor: Colors.white,
+    final conversation = widget.conversation;
+    print(8);
+    return Scaffold(
       appBar: AppBar(
-        title: Text("VIDEO"),
+        title: const Text('CONVERSATION'),
         centerTitle: true,
         backgroundColor: Colors.pink,
       ),
-      body: Column(
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => VideoScreen(url:"assets/thucuoi.mp4")),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.all(10.0),
-              height: 100,
-              width: 400,
-              //color: Colors.amber,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.black45),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'DESPACITO',
-                    style: TextStyle(color: Colors.white, fontSize: 30),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => VideoScreen(url:"assets/same.mp4")),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.all(10.0),
-              height: 100,
-              width: 400,
-              // color: Colors.black45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.black45),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('BABY SHARK',style: TextStyle(color: Colors.white,fontSize: 30),)
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => VideoScreen(url:"assets/videos/despacito.mp4")),
+      body: ListView.builder(
+          itemCount: conversation.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                title: Text(conversation[index].title),
+                leading: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image.network(conversation[index].thumbnail.upload),
+                ),
+                //onTap: () {
+                //   Navigator.of(context).push(MaterialPageRoute(
+                //       builder: (context) =>
+                //           VideoScreen(conversation[index]),);
+                //   //paragraphDataModel: ParagraphData[index],)));
+                // },
+                onTap: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context)=>
+                            VideoScreen(conversation[index])),// SHOW  nội dung
                   );
                 },
-                child: Container(
-                  margin: EdgeInsets.all(10.0),
-                  height: 100,
-                  width: 400,
-                  //color: Colors.amber,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), color: Colors.black45),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Ed Sheeran - Shape of You (Lyrics).mp3',
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
-                    ],
-                  ),
-                ),
               ),
-            ],
-          ),
-          InkWell(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => VideoScreen(url:"assets/videos/despacito.mp4")),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.all(10.0),
-              height: 100,
-              width: 400,
-              // color: Colors.black45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.black45),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('BLACKPINK',style: TextStyle(color: Colors.white,fontSize: 30),)
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+            );
+          }),
     );
   }
 }

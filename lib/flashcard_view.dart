@@ -10,7 +10,7 @@ class FlashcardView extends StatelessWidget {
       return Card(
         child: Stack(
           children: [
-            Center(child: Image.asset(image)),
+            Center(child: Image.network(image)),
             Text(text, textAlign: TextAlign.center,style: TextStyle(color: Colors.pink, fontSize: 60,))
           ],
         )
